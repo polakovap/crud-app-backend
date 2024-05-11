@@ -2,18 +2,18 @@ const express = require('express')
 const mongoose = require('mongoose');
 const User = require('./models/user.model.js')
 const userRoute = require("./routes/user.route.js")
+const cors = require('cors');
+
 const app = express()
 
 //middleware
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
+app.use(cors());
 
 //routes
-app.use("/api/users", userRoute);
+app.use('/', userRoute);
 
-app.get('/', (rew, res) => {
-    res.send("Hello from Node API Server");
-});
 
 //connection to MongoDB
 mongoose.connect('mongodb+srv://admin:R64uXNObnrzHpmUI@wordnestdb.lyxsuqb.mongodb.net/Users-API?retryWrites=true&w=majority')
